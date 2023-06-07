@@ -1,0 +1,21 @@
+address_mapping" to enforce correct MamAttr, SnpAttr, TgtId values according to the setting of the address range.
+If you set:
+activeRnCfg.AddressMappingScheme = CDN_CHI_CFG_ADDRESS_MAPPING_SCHEME_ARM_V8;
+activeRnCfg.addToAddressMapping('h0, 'h100, CDN_CHI_CFG_V8MEMATTR_MEMORY_NC_EWA, 98);
+ 
+Then all requests of type myChiTransaction to an address from 0 to 'h100 will be constrained to MemAttr = 'h1 and SnpAttr = 'h0.
+A byproduct of this API is the constraint of TgtID=98 of all requests to this address range.
+ 
+Available ARMv8 memory attributes are:
+CDN_CHI_CFG_V8MEMATTR_DEVICE_nGnRnE
+CDN_CHI_CFG_V8MEMATTR_DEVICE_GRE_nGRE
+CDN_CHI_CFG_V8MEMATTR_DEVICE_nGnRE
+CDN_CHI_CFG_V8MEMATTR_MEMORY_NC_NoEWA
+CDN_CHI_CFG_V8MEMATTR_MEMORY_NC_EWA
+CDN_CHI_CFG_V8MEMATTR_MEMORY_WB_NoAlloc_NoSnp  
+CDN_CHI_CFG_V8MEMATTR_MEMORY_WB_NoAlloc_Inner
+CDN_CHI_CFG_V8MEMATTR_MEMORY_WB_NoAlloc_Outer
+CDN_CHI_CFG_V8MEMATTR_MEMORY_WB_Alloc_NoSnp
+CDN_CHI_CFG_V8MEMATTR_MEMORY_WB_Alloc_Inner
+CDN_CHI_CFG_V8MEMATTR_MEMORY_WB_Alloc_Outer
+(in CHI.B ¨C Inner and Outer segments are the equivalent with SnpAttr = 1'b1)
